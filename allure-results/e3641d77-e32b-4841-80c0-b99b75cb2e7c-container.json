@@ -1,1 +1,0 @@
-{"uuid":"e3641d77-e32b-4841-80c0-b99b75cb2e7c","name":"org.example.tests.TestGETStates","children":["5efec6df-7c46-4cb1-ac9b-9f90be68d5e7"],"befores":[{"name":"init","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1675067489648,"stop":1675067489900}],"afters":[],"links":[],"start":1675067489638,"stop":1675067490636}
