@@ -54,6 +54,19 @@ public class TestGET {
         assertEquals(found, true);
     }
 
+    @Test
+    public void testGetStates(){
+        StateResponse st = cowinServiceHelper.getAllStates();
+        assertNotNull(st, "GET States returned non-empty list");
+        List<State> states = st.getStates();
+        for (State s : states) {
+            assertNotNull(s.getState_id(), "All States and Union Territories should have their unique ids");
+        }
+    }
+
+
+
+
 
 
 
