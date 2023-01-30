@@ -8,9 +8,12 @@ import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.example.constants.Endpoints;
 import org.example.models.DistrictResponse;
+import org.example.models.HospitalsResponse;
 import org.example.models.StateResponse;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -42,6 +45,17 @@ public class CowinServiceHelper {
         System.out.println(districtResponse.toString());
         return districtResponse;
     }
+
+    public HospitalsResponse getHospitals(int district_id, Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Response response = RestAssured.given().queryParam("district_id", String.valueOf(district_id)).queryParam("date", formatter.format(date)).contentType(ContentType.JSON).get(Endpoints.GET_HOSPITALS_FOR_DISTRICT).andReturn();
+        Type type = new TypeReference<HospitalsResponse>(){}.getType();
+        HospitalsResponse hospitalsResponse = response.as(type);
+        System.out.println(hospitalsResponse.toString());
+        return hospitalsResponse;
+    }
+
+
 
 
 
