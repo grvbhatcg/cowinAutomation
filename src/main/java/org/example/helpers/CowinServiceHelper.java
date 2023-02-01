@@ -28,7 +28,7 @@ public class CowinServiceHelper {
 
     public StateResponse getAllStates() {
         Response response = RestAssured.given().contentType(ContentType.JSON).get(Endpoints.GET_ALL_STATES).andReturn();
-        assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Ok");
+        assertEquals(response.getStatusCode(), HttpStatus.SC_OK, response.getBody().asString());
         Type type = new TypeReference<StateResponse>(){}.getType();
         StateResponse stateResponse = response.as(type);
         System.out.println(stateResponse.toString());
@@ -37,7 +37,7 @@ public class CowinServiceHelper {
 
     public DistrictResponse getDistricts(int state_id) {
         Response response = RestAssured.given().pathParam("state_id", String.valueOf(state_id)).contentType(ContentType.JSON).get(Endpoints.GET_DISTRICTS_FOR_STATE).andReturn();
-        assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Ok");
+        assertEquals(response.getStatusCode(), HttpStatus.SC_OK, response.getBody().asString());
         JsonPath jsnPath = response.jsonPath();
         Type type = new TypeReference<DistrictResponse>(){}.getType();
         DistrictResponse districtResponse = response.as(type);
@@ -49,7 +49,7 @@ public class CowinServiceHelper {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         Response response = RestAssured.given().queryParam("district_id", String.valueOf(district_id)).queryParam("date", formatter.format(date)).contentType(ContentType.JSON).get(Endpoints.GET_HOSPITALS_FOR_DISTRICT).andReturn();
-        assertEquals(response.getStatusCode(), HttpStatus.SC_OK, "Ok");
+        assertEquals(response.getStatusCode(), HttpStatus.SC_OK, response.getBody().asString());
         Type type = new TypeReference<HospitalsResponse>(){}.getType();
         HospitalsResponse hospitalsResponse = response.as(type);
         System.out.println(hospitalsResponse.toString());

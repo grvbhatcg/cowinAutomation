@@ -27,13 +27,13 @@ Validates that the state ID of Karnataka is 16
  */
     @Test
     public void validateStateID(){
-        assertNotNull(stateResponse, "GET States returned non-empty list");
+        assertNotNull(stateResponse, "GET States returned empty list");
         List<State> states = stateResponse.getStates();
         boolean found = false;
         for (State s : states) {
             if (s.getState_name().equals("Karnataka")) {
                 found = true;
-                assertEquals(s.getState_id(), 16);
+                assertEquals(s.getState_id(), 16, "State ID of Karnataka not found to be 16");
                 return;
             }
         }
@@ -52,7 +52,7 @@ Validates that the state ID of Karnataka is 16
         for (District d: districts) {
             if (d.getDistrict_name().equals("Bangalore Urban")) {
                 found = true;
-                assertEquals(d.getDistrict_id(), 265, "Ok");
+                assertEquals(d.getDistrict_id(), 265, "District ID of Bangalore Urban not found to be 265");
                 return;
             }
         }
@@ -85,7 +85,7 @@ Validates that the state ID of Karnataka is 16
             double fee = Double.parseDouble(session.getFee());
             if (name.equals("Springleaf Healthcare")) {
                 found = true;
-                assertTrue(fee > 300.0);
+                assertTrue(fee > 300.0, "Springleaf Healthcare's fees do not exceed INR 300");
             }
         }
         assertNotEquals(found, false, "Hospital not found");
