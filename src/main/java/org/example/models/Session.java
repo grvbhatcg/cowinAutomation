@@ -1,10 +1,7 @@
 package org.example.models;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 import lombok.*;
-
 import java.util.ArrayList;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -25,12 +22,12 @@ public class Session {
     @Setter int pincode;
     private @Getter
     @Setter String from;
-    @JsonProperty("to")
+    @SerializedName("to")
     private @Getter
     @Setter String myto;
     private @Getter
     @Setter int lat;
-    @JsonProperty("long")
+    @SerializedName("long")
     private @Getter
     @Setter int mylong;
     private @Getter
