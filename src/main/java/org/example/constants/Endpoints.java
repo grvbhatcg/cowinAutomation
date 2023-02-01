@@ -6,5 +6,4 @@ public class Endpoints {
 
     public final static String GET_HOSPITALS_FOR_DISTRICT = "/appointment/sessions/public/findByDistrict";
 
-
 }

@@ -1,8 +1,10 @@
 package org.example.tests;
+
 import org.example.helpers.CowinServiceHelper;
 import org.example.models.*;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +24,11 @@ public class TestGET {
     }
 
 
-/*
-Validates that the state ID of Karnataka is 16
- */
+    /*
+    Validates that the state ID of Karnataka is 16
+     */
     @Test
-    public void validateStateID(){
+    public void validateStateID() {
         assertNotNull(stateResponse, "GET States returned empty list");
         List<State> states = stateResponse.getStates();
         boolean found = false;
@@ -44,12 +46,12 @@ Validates that the state ID of Karnataka is 16
     Validates that the district ID of Bengaluru is 265
      */
     @Test
-    public void validateDistrictId(){
+    public void validateDistrictId() {
         DistrictResponse districtResponse = cowinServiceHelper.getDistricts(16);
         assertNotNull(districtResponse, "GET Districts returned empty list");
         List<District> districts = districtResponse.getDistricts();
         boolean found = false;
-        for (District d: districts) {
+        for (District d : districts) {
             if (d.getDistrict_name().equals("Bangalore Urban")) {
                 found = true;
                 assertEquals(d.getDistrict_id(), 265, "District ID of Bangalore Urban not found to be 265");
@@ -63,7 +65,7 @@ Validates that the state ID of Karnataka is 16
     Validates that every state and UT has an ID
      */
     @Test
-    public void testGetStates(){
+    public void testGetStates() {
         assertNotNull(stateResponse, "GET States returned non-empty list");
         List<State> states = stateResponse.getStates();
         for (State s : states) {
@@ -75,7 +77,7 @@ Validates that the state ID of Karnataka is 16
      Validates that Springleaf's vaccine fees > Rs 300
     */
     @Test
-    public void testSpringleafHealthcare(){
+    public void testSpringleafHealthcare() {
         HospitalsResponse hospitalsResponse = cowinServiceHelper.getHospitals(265, new Date());
         assertNotNull(hospitalsResponse, "GET Hospitals returned non-empty list");
         List<Session> sessions = hospitalsResponse.getSessions();
@@ -95,7 +97,7 @@ Validates that the state ID of Karnataka is 16
      Validates that there exists at least 1 free vaccine center
      */
     @Test
-    public void testFreeCenters(){
+    public void testFreeCenters() {
         List<State> states = stateResponse.getStates();
         boolean atLeastOneFree = false;
         for (State state : states) {
@@ -118,26 +120,6 @@ Validates that the state ID of Karnataka is 16
         }
         assertNotEquals(atLeastOneFree, false, "No hospital found that provides free vaccination");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

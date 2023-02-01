@@ -7,7 +7,9 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class StateResponse{
-    private @Getter @Setter ArrayList<State> states;
-    private @Getter @Setter int ttl;
+public class StateResponse {
+    private @Getter
+    @Setter ArrayList<State> states;
+    private @Getter
+    @Setter int ttl;
 }
